@@ -2,45 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <title>takenory.github.com - takenory.github.com</title>
     <link rel="stylesheet" type="text/css" 
       href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" 
       media="screen">
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css"
+      href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css"
+      media="screen"> 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.3"> 
   </head>
   <body>
-    <div class='navbar'>
-      <div class='navbar-inner'>
-        <div class='container'>
-          <a class='brand' href='/'>takenory.github.com</a>
-          <ul class='nav'>
-            <li><a href='/'>Home</a></li>
-            <li><a href='/about/index.html'>About</a></li>
+    <div id="wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="/">takenory.github.com</a>
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/index.html">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div id="main" class="span10">
+          <h1><a href="/">takenory.github.com</a></h1>
+          <p>このサイトは、<a href="http://twitter.com/takenory" title="@takenory">@takenory</a>のブログサイト（にする予定）です。<p>
+
+
+        </div>
+        <div id="sidebar" class="span2">
+          <h2>About</h2>
+          <ul>
+            <li><a href="http://twitter.com/takenory">Twitter</a></li>
+            <li><a href="http://www.facebook.com/takenory">Facebook</a></li>
+            <li><a href="http://www.github.com/takenory">Github</a></li>
+            <li><a href="http://www.slideshare.net/takenory">Slideshare</a></li>
+          </ul>
+          <h2>Articles</h2>
+          <ul>
+          
           </ul>
         </div>
       </div>
+      <div id="push"></div>
     </div>
-    <div class="container-fluid">
-      <div id="main" class="span10">
-        <h1><a href="/">takenory.github.com</a></h1>
-        <p>このサイトは、<a href="http://twitter.com/takenory" title="@takenory">@takenory</a>のブログサイト（にする予定）です。<p>
 
-
-      </div>
-      <div id="sidebar" class="span2">
-        <h2>About</h2>
-        <ul>
-          <li><a href="http://twitter.com/takenory">Twitter</a></li>
-          <li><a href="http://www.facebook.com/takenory">Facebook</a></li>
-          <li><a href="http://www.github.com/takenory">Github</a></li>
-          <li><a href="http://www.slideshare.net/takenory">Slideshare</a></li>
-        </ul>
-        <h2>Articles</h2>
-        <ul>
-        
-        </ul>
+    <div id="footer">
+      <div class="container">
+        <p class="muted">このサイトは <a href="http://nanoc.ws/" title="nanoc">nanoc</a> で作ってます。</p>
       </div>
     </div>
   </body>
