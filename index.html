@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css"
       href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css"
       media="screen"> 
+    <link rel="stylesheet" type="text/css"
+      href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css"
+      media="screen"> 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc 3.6.3"> 
   </head>
@@ -40,6 +43,18 @@
           </div>
           <p>このサイトは、<a href="http://twitter.com/takenory" title="@takenory">@takenory</a>のブログサイト（にする予定）です。<p>
 
+  <div class="page-header">
+    <h1><a href="/nanoc_github_pages/">nonoc + Github Pages</a></h1>
+    <span class="meta">Posted by takenory at 2013/05/20</span>
+  </div>
+  <p>
+このサイトを立ち上げた時の記録です。<br />
+nanocを用いたコンテンツ管理のためのリポジトリ（sourceブランチ）と、
+Github Pagesからコンテンツを公開するためのリポジトリ（masterブランチ）の
+使い分けや、そのために必要な設定（gitのコマンド）が分からず苦労しました。</p>
+
+<a titiel="nonoc + Github Pages" href="/nanoc_github_pages/">...続きを読む</a>
+
         </div>
         <div id="sidebar" class="span2">
           <h2>About</h2>
@@ -51,6 +66,8 @@
           </ul>
           <h2>Articles</h2>
           <ul>
+          
+            <li><a href="/nanoc_github_pages/">nonoc + Github Pages</a></li>
           
           </ul>
         </div>
@@ -68,6 +85,14 @@
   <div id="fb-root"></div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+<script>
+  !function ($) {
+    $(function(){
+      window.prettyPrint && prettyPrint()   
+    })
+  }(window.jQuery)
+</script>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
