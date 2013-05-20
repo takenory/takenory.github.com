@@ -1,0 +1,227 @@
+---
+title: nonoc + Github Pages でサイト作成
+author: takenory
+created_at: 2013/05/20
+kind: article
+publish: false
+---
+
+<p>
+このサイトを立ち上げた時の記録です。<br />
+nanocを用いたコンテンツ管理のためのリポジトリ（sourceブランチ）と、
+Github Pagesからコンテンツを公開するためのリポジトリ（masterブランチ）を
+使い分けるための設定が分からず苦労しました。<br />
+完全にGitの勉強不足です。。勉強しなければ。</p>
+
+<!-- MORE -->
+
+<hr />
+
+<h2>1.nanocの環境セットアップ</h2>
+
+<h3>ディレクトリ作成</h3>
+<p>サイトを管理するためのディレクトリを作成します</p>
+<pre>
+> mkdir takenory.github.com
+> cd takenory.github.com
+</pre>
+
+<h3>nanocのインストール</h3>
+<p>Bundlerを使ってnanocをインストールします</p>
+<pre>
+> bundle init
+Writing new Gemfile to /Users/takenory/devlove/takenory.github.com/Gemfile
+</pre>
+
+<p>Gemfileに nanoc を記述しておきます。</p>
+<pre>
+# Gemfile
+source "http://rubygems.org"
+
+gem "nanoc"
+</pre>
+
+<p>vendor/bundle ディレクトリにnanocをインストールします</p>
+<pre>
+> bundle install --path vendor/bundle
+Fetching gem metadata from http://rubygems.org/....
+Installing colored (1.2) 
+Installing cri (2.3.0) 
+Installing nanoc (3.6.3) 
+Using bundler (1.1.5) 
+Your bundle is complete! It was installed into ./vendor/bundle
+</pre>
+
+<p>nanocの初期リソースを作成します</p>
+<pre>
+> bundle exec nanoc create-site resouces
+      create  nanoc.yaml
+      create  Rules
+      create  content/index.html
+      create  content/stylesheet.css
+      create  layouts/default.html
+Created a blank nanoc site at 'resouces'. Enjoy!
+</pre>
+
+<p>リソースの作成場所を調整します</p>
+<pre>
+> mv resouces/* ./
+> rmdir resouces/
+> ls
+Gemfile		Rules		layouts		nanoc.yaml	vendor
+Gemfile.lock	content		lib		output
+</pre>
+
+<h2>2.nanocを用いたコンテンツ管理のためのリポジトリ作成</h2>
+
+<h3>Gitリポジトリの作成</h3>
+<p>まずは、nanocを用いたコンテンツ管理のためのリポジトリを作成します</p>
+<pre>
+> git init
+Initialized empty Git repository in /Users/takenory/devlove/takenory.github.com/.git/
+</pre>
+
+<p>リポジトリで管理しないリソースを、.gitignore に指定しておきます</p>
+<pre>
+# .gitignore
+output/
+tmp/
+vendor/bundle
+</pre>
+
+<p>リポジトリにリソースを追加します</p>
+<pre>
+> git add .
+> git commit -m "nanoc resources"
+[master (root-commit) 48f71da] nanoc initialized resources
+ 10 files changed, 289 insertions(+), 0 deletions(-)
+ create mode 100644 .bundle/config
+ create mode 100644 .gitignore
+ create mode 100644 Gemfile
+ create mode 100644 Gemfile.lock
+ create mode 100644 Rules
+ create mode 100644 content/index.html
+ create mode 100644 content/stylesheet.css
+ create mode 100644 layouts/default.html
+ create mode 100644 lib/default.rb
+ create mode 100644 nanoc.yaml
+</pre>
+
+<h4>Gitリポジトリのmasterブランチをsourceブランチにリネームします</h4>
+<p>nanocで使用するコンテンツ管理用のリソースは、”source”ブランチとして扱います。</p>
+<pre>
+> git branch -m master source
+</pre>
+
+<h3>Github上にサイト用のリポジトリを作成する</h3>
+<p>省略しますー</p>
+
+<h3>リモートリポジトリの設定</h3>
+<p>Githubに作成したリポジトリを、リモートリポジトリ origin として追加します</p>
+<pre>
+> git remote add origin git@github.com:takenory/takenory.github.com.git
+</pre>
+
+<p>source ブランチに登録されているリソースを、リモートリポジトリ origin にpushします。</p>
+<pre>
+> git push -u origin source
+Counting objects: 16, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (16/16), 4.53 KiB, done.
+Total 16 (delta 0), reused 0 (delta 0)
+To git@github.com:takenory/takenory.github.com.git
+ * [new branch]      source -> source
+Branch source set up to track remote branch source from origin.
+</pre>
+
+<h2>3.Github Pagesからコンテンツを公開するためのリポジトリ</h2>
+
+<h3>公開コンテンツ領域（outputディレクトリ）のリポジトリ設定</h3>
+<p>outputディレクトリに、リモートリポジトリをcolneする</p>
+<p>Github PagesでWebサイトとして公開するのは、output ディレクトリの中身です。</p>
+<pre>
+> git clone git@github.com:takenory/takenory.github.com.git output
+Cloning into output...
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 16 (delta 0), reused 16 (delta 0)
+Receiving objects: 100% (16/16), 4.53 KiB, done.
+</pre>
+
+<h4>outputディレクトリをsymbolic-refでmasterブランチと繋ぐ</h4>
+<p>僕はここがよく分からず苦労しました。。</p>
+<pre>
+> cd output
+> git symbolic-ref HEAD refs/heads/master
+</pre>
+
+<p>作業用にcloneした際のファイルなど、不要なgit関連ファイルを削除する</p>
+<pre>
+> rm .git/index
+> git clean -fdx
+Removing .bundle/
+Removing .gitignore
+Removing Gemfile
+Removing Gemfile.lock
+Removing RulesRemoving content/
+Removing layouts/
+Removing lib/
+Removing nanoc.yaml
+</pre>
+
+<h2>4.サイトの公開</h2>
+
+<h3>サイトのcompile</h3>
+<pre>
+> cd ../
+> bundle exec nanoc compile
+Loading site data… done
+Compiling site…
+      create  [0.01s]  output/index.html
+      create  [0.00s]  output/style.css
+      create  [0.00s]  output/about/index.html
+
+Site compiled in 0.06s.
+</pre>
+
+<h3>コンテンツのデプロイ</h3>
+<p>デプロイ（コンテンツの公開）は、outputディレクトリに移動して行います。</p>
+<p>Github上に作成したリモートリポジトリの、masterブランチにpushします。</p>
+<pre>
+> cd output/
+> git add .
+> git commit -m "first original content"
+[master (root-commit) 1bdb732] first original content
+ 3 files changed, 193 insertions(+), 0 deletions(-)
+ create mode 100644 about/index.html
+ create mode 100644 index.html
+ create mode 100644 style.css
+
+> git push origin master
+Counting objects: 6, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 1.67 KiB, done.
+Total 6 (delta 1), reused 1 (delta 0)
+To git@github.com:takenory/takenory.github.com.git
+ * [new branch]      master -> master
+</pre>
+
+<h2>4.nanocを用いたサイト管理用リソースの登録</h2>
+
+<h3>nanocで使う管理用のリソースもGithubに登録しておきます</h3>
+<p>こちらは、sourceブランチへpushします。</p>
+<pre>
+> cd ../
+> git add .
+> git commit
+> git push origin source
+Counting objects: 16, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (9/9), 1.84 KiB, done.
+Total 9 (delta 1), reused 0 (delta 0)
+To git@github.com:takenory/takenory.github.com.git
+   48f71da..576f61c  source -> source
+
