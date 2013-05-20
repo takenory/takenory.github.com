@@ -3,9 +3,10 @@ title: takenory.github.com
 ---
 
 <p>このサイトは、<a href="http://twitter.com/takenory" title="@takenory">@takenory</a>のブログサイト（にする予定）です。<p>
-
 <% sorted_articles[0, 5].each do |article| %>
-  <h1><%= link_to article[:title], article.path %></h1>
+  <div class="page-header">
+    <h1><%= link_to article[:title], article.path %></h1>
+    <span class="meta">Posted by <%= article[:author] %> at <%= article[:created_at] %></span>
+  </div>
   <%= summary(article) %>
-  <span class="meta">(<%= article[:created_at] %>)</span>
 <% end %>
