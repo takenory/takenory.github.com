@@ -19,33 +19,14 @@
   </head>
   <body>
     <div id="wrap">
-      <div class="navbar navbar-static-top navbar-inverse">
-        <div class="navbar-inner">
-          <a class="brand" href="/">takenory.github.com</a>
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about/index.html">About</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <%= render "_navbar" %>
       <div class="container-fluid">
         <div id="main" class="span9 offset1">
           <div class="page-header">
             <h1><%= link_to @item[:title], @item.path %></h1>
             <% if @item[:kind] == "article" %>
               <span class="meta">Posted by <%= @item[:author] %> at <%= @item[:created_at] %></span>
-              <div id="social_buttons">
-                <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
-                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-via="takenory" data-lang="ja">ツイート</a>
-              </div>
+              <%= render "_social_buttons" %>
             <% end %>
           </div>
           <%= yield %>
