@@ -21,7 +21,7 @@
     <div id="wrap">
       <%= render "_navbar" %>
       <div class="container-fluid">
-        <div id="main" class="span9 offset1">
+        <div id="main" class="span7 offset1">
           <div class="page-header">
             <h1><%= link_to @item[:title], @item.path %></h1>
             <% if @item[:kind] == "article" %>
@@ -35,7 +35,7 @@
             <div class="fb-comments" data-href="http://takenory.github.com<%= @item.path %>" data-width="auto" data-num-posts="10"></div>
           <% end  %>
         </div>
-        <div id="sidebar" class="span3">
+        <div id="sidebar" class="span3 offset1">
           <h2>About</h2>
           <ul>
             <li><a href="http://twitter.com/takenory">Twitter</a></li>
