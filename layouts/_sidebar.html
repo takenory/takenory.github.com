@@ -1,0 +1,16 @@
+<h2>@takenory</h2>
+<p>
+  <img src="/images/takenory.jpg" class="img-circle">
+</p>
+<ul>
+  <li><a href="http://twitter.com/takenory">Twitter</a></li>
+  <li><a href="http://www.facebook.com/takenory">Facebook</a></li>
+  <li><a href="http://jp.linkedin.com/in/takenory/">Linkedin</a></li>
+  <li><a href="http://www.slideshare.net/takenory">Slideshare</a></li>
+</ul>
+<h2>Articles</h2>
+<ul>
+  <% sorted_articles[0, 5].each do |article| %>
+  <li><%= link_to(article[:title], article.path) %></li>
+  <% end %>
+</ul>
