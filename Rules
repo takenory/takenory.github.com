@@ -25,8 +25,21 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    filter :erb
-    layout 'default'
+    case item[:extension]
+      when 'html', 'erb'
+        filter :erb
+        layout 'default'
+      when 'md'
+        filter :redcarpet, :options => {:fenced_code_blocks => true}
+        layout 'default'
+      when 'haml'
+        filter :haml
+        layout 'default'
+      when 'sass'
+        filter :sass
+      else
+        # don't filter other extension
+    end
   end
 end
 
