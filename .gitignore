@@ -2,3 +2,4 @@ output/
 tmp/
 vendor/bundle
 crash.log
+.sass-cache/
