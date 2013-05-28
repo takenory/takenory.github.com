@@ -35,8 +35,8 @@ compile '*' do
       when 'haml'
         filter :haml
         layout 'default'
-      when 'sass'
-        filter :sass
+      when 'scss'
+        filter :sass, :syntax => :scss
       else
         # don't filter other extension
     end
@@ -52,8 +52,13 @@ route '*' do
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    case item[:extension]
+      when 'scss'
+        '/css' + item.identifier.chop + '.css'
+      else
+        # Write item with identifier /foo/ to /foo/index.html
+        item.identifier + 'index.html'
+    end
   end
 end
 
