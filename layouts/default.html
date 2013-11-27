@@ -24,7 +24,9 @@
               <%= render "_social_buttons" %>
             <% end %>
           </div>
-          <%= yield %>
+          <div class="article">
+            <%= yield %>
+          </div>
           <% if @item[:kind] == "article" %>
             <h2>Comments</h2>
             <div class="fb-comments" data-href="http://takenory.github.com<%= @item.path %>" data-width="auto" data-num-posts="10"></div>

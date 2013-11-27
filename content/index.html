@@ -10,6 +10,8 @@ title: takenory.github.com
       <h1><%= link_to article[:title], article.path %></h1>
       <span class="meta">Posted by <%= article[:author] %> at <%= article[:created_at] %></span>
     </div>
-    <%= summary(article) %>
+    <div class="article">
+      <%= summary(article) %>
+    </div>
   <% end %>
 </div>
